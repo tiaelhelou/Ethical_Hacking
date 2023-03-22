@@ -68,12 +68,18 @@ else:
 # Read from subdomains_dictionary.bat
 with open('subdomains_dictionary.bat') as f:
     for line in f:
-        subdomain_checker(line.strip())
+        pattern = r"^\S+$"
+        sub = re.match(pattern, line)
+        if sub:
+        	subdomain_checker(sub, url)
 
 # Read from dirs_dictionary.bat 
 with open('dirs_dictionary.bat') as x:
     for line in x:
-        domain_checker(line.strip(), url)  
+        pattern = r"^\S+$"
+        dom = re.match(pattern, line)
+        if dom:
+        	domain_checker(dom, url)  
         
 file_checker("user_passwords.txt", url)
     
