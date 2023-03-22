@@ -65,41 +65,41 @@ if len(sys.argv) < 2:
 else:
 	url = sys.argv[1]
 
-# Read from subdomains_dictionary.bat
-with open('subdomains_dictionary.bat') as f:
-    for line in f:
-        pattern = r"^\S+$"
-        sub = re.match(pattern, line)
-        if sub:
-        	subdomain_checker(sub, url)
+	# Read from subdomains_dictionary.bat
+	with open('subdomains_dictionary.bat') as f:
+		for line in f:
+			pattern = r"^\S+$"
+			sub = re.match(pattern, line)
+			if sub:
+				subdomain_checker(sub, url)
 
-# Read from dirs_dictionary.bat 
-with open('dirs_dictionary.bat') as x:
-    for line in x:
-        pattern = r"^\S+$"
-        dom = re.match(pattern, line)
-        if dom:
-        	domain_checker(dom, url)  
-        
-file_checker("user_passwords.txt", url)
-    
-# Parse html
-try:
-    # Get Url
-	get = requests.get("http://"+url)
- 
-# Exception
-except requests.exceptions.RequestException as e:
-    # Continue
-	pass
+	# Read from dirs_dictionary.bat 
+	with open('dirs_dictionary.bat') as x:
+		for line in x:
+			pattern = r"^\S+$"
+			dom = re.match(pattern, line)
+			if dom:
+				domain_checker(dom, url)  
+			
+	file_checker("user_passwords.txt", url)
+		
+	# Parse html
+	try:
+		# Get Url
+		get = requests.get("http://"+url)
+	
+	# Exception
+	except requests.exceptions.RequestException as e:
+		# Continue
+		pass
 
-# Extract links
-pattern = r"(?:<a\shref=(\w+)><//a>)"
-lst = re.findall(pattern, get.text)
+	# Extract links
+	pattern = r"(?:<a\shref=(\w+)><//a>)"
+	lst = re.findall(pattern, get.text)
 
-# Remove duplicates
-links=[]
-for i in lst:
-    if i not in links:
-        links.append(i)
-print(links)
+	# Remove duplicates
+	links=[]
+	for i in lst:
+		if i not in links:
+			links.append(i)
+	print(links)
