@@ -1,5 +1,6 @@
 # should run: pip install requests
 import requests
+import sys
 
 file1 = open(' subdomains_output.bat', 'w')
 
@@ -18,7 +19,7 @@ def subdomain_checker(sub, url):
         # print URL with Errs
 		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
 
-url = "udemy.com"
+url = sys.argv[1]
 
 with open('subdomains_dictionary.bat') as f:
     for line in f:
