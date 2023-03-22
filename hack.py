@@ -10,6 +10,7 @@ import re
 
 file1 = open(' subdomains_output.bat', 'w')
 file2 = open('directories_output.bat', 'w')
+file3 = open('files_output.bat', 'w')
 
 def subdomain_checker(sub, url):
 	try:
@@ -35,6 +36,21 @@ def domain_checker(dom, url):
 			file2.writelines("http://"+url+"/"+dom+"/: is reachable \n")
 		else:
 			file2.writelines("http://"+url+"/"+dom+"/: is Not reachable \n")
+
+	#Exception
+	except requests.exceptions.RequestException as e:
+        # print URL with Errs
+		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+
+def file_checker(file, url):
+	try:
+		#Get Url
+		get = requests.get("http://"+url+"/"+file)
+		# if the request succeeds 
+		if get.status_code == 200:
+			file3.writelines("http://"+url+"/"+file+": is reachable \n")
+		else:
+			file3.writelines("http://"+url+"/"+file+": is Not reachable \n")
 
 	#Exception
 	except requests.exceptions.RequestException as e:
