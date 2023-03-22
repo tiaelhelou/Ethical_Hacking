@@ -23,9 +23,6 @@ This project is about creating a Python script that can be run on a website to d
       pip install requests
       
 - 
-      pip install pycurl
-      
-- 
       python hack.py url
       
 
