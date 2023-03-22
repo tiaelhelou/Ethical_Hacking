@@ -58,7 +58,12 @@ def file_checker(file, url):
 		pass
 
 # Get url
-url = sys.argv[1]
+url = ""
+
+if len(sys.argv) < 2:
+    print("No url found")
+else:
+	url = sys.argv[1]
 
 # Read from subdomains_dictionary.bat
 with open('subdomains_dictionary.bat') as f:
