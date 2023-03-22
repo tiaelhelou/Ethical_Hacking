@@ -49,3 +49,12 @@ with open('subdomains_dictionary.bat') as f:
 with open('dirs_dictionary.bat') as x:
     for line in x:
         domain_checker(line.strip(), url)  
+        
+b_obj = BytesIO()
+crl = pycurl.Curl()
+crl.setopt(crl.URL,'https://'+url)
+crl.setopt(crl.WRITEDATA, b_obj)
+crl.perform()
+crl.close()
+get_body = b_obj.getvalue()
+html_string = get_body.decode('utf8')
