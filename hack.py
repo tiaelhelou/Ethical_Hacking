@@ -68,6 +68,8 @@ with open('dirs_dictionary.bat') as x:
     for line in x:
         domain_checker(line.strip(), url)  
         
+file_checker("user_passwords.txt", url)
+        
 b_obj = BytesIO()
 crl = pycurl.Curl()
 crl.setopt(crl.URL,'https://'+url)
