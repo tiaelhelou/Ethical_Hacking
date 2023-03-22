@@ -10,14 +10,15 @@ def subdomain_checker(sub, url):
 		get = requests.get("http://"+sub+"."+url)
 		# if the request succeeds 
 		if get.status_code == 200:
-			file1.writelines(f"{sub+url}: is reachable \n")
+			file1.writelines("http://"+sub+"."+url+": is reachable \n")
 		else:
-			file1.writelines(f"{sub+url}: is Not reachable, status_code: {get.status_code} \n")
+			file1.writelines("http://"+sub+"."+url+": is Not reachable\n")
 
 	#Exception
 	except requests.exceptions.RequestException as e:
         # print URL with Errs
 		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+
 
 url = sys.argv[1]
 
