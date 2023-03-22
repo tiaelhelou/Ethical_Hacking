@@ -3,6 +3,7 @@ import requests
 import sys
 
 file1 = open(' subdomains_output.bat', 'w')
+file2 = open('directories_output.bat', 'w')
 
 def subdomain_checker(sub, url):
 	try:
