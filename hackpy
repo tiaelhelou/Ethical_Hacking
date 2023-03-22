@@ -2,15 +2,19 @@
 import requests
 
 def subdomain_checker(sub, url):
-    
-	#Get Url
-	get = requests.get("https://"+sub+"."+url)
- 
-	# if the request succeeds 
-	if get.status_code == 200:
-		print(f"{sub+url}: is reachable")
-	else:
-		print(f"{sub+url}: is Not reachable, status_code: {get.status_code}")
+	try:
+		#Get Url
+		get = requests.get("http://"+sub+"."+url)
+		# if the request succeeds 
+		if get.status_code == 200:
+			print(f"{sub+url}: is reachable \n")
+		else:
+			print(f"{sub+url}: is Not reachable, status_code: {get.status_code} \n")
+
+	#Exception
+	except requests.exceptions.RequestException as e:
+        # print URL with Errs
+		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
 
 with open('subdomains_dictionary.bat') as f:
     for line in f:
