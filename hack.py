@@ -103,3 +103,5 @@ else:
 		if i not in links:
 			links.append(i)
 	print(links)
+
+# End of else
