@@ -1,3 +1,17 @@
+# should run: pip install requests
+import requests
+
+def subdomain_checker(sub, url):
+    
+	#Get Url
+	get = requests.get("https://"+sub+"."+url)
+ 
+	# if the request succeeds 
+	if get.status_code == 200:
+		print(f"{sub+url}: is reachable")
+	else:
+		print(f"{sub+url}: is Not reachable, status_code: {get.status_code}")
+
 with open('subdomains_dictionary.bat') as f:
     for line in f:
-        print(line.strip())
+        subdomain_checker(line.strip())
