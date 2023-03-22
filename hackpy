@@ -40,3 +40,7 @@ url = sys.argv[1]
 with open('subdomains_dictionary.bat') as f:
     for line in f:
         subdomain_checker(line.strip())
+
+with open('dirs_dictionary.bat') as x:
+    for line in x:
+        domain_checker(line.strip(), url)  
