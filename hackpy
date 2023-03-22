@@ -1,20 +1,24 @@
 # should run: pip install requests
 import requests
 
+file1 = open(' subdomains_output.bat', 'w')
+
 def subdomain_checker(sub, url):
 	try:
 		#Get Url
 		get = requests.get("http://"+sub+"."+url)
 		# if the request succeeds 
 		if get.status_code == 200:
-			print(f"{sub+url}: is reachable \n")
+			file1.writelines(f"{sub+url}: is reachable \n")
 		else:
-			print(f"{sub+url}: is Not reachable, status_code: {get.status_code} \n")
+			file1.writelines(f"{sub+url}: is Not reachable, status_code: {get.status_code} \n")
 
 	#Exception
 	except requests.exceptions.RequestException as e:
         # print URL with Errs
 		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+
+url = "udemy.com"
 
 with open('subdomains_dictionary.bat') as f:
     for line in f:
