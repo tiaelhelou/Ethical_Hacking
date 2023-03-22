@@ -12,50 +12,50 @@ file3 = open('files_output.bat', 'w')
 # Check subdomain
 def subdomain_checker(sub, url):
 	try:
-		#Get Url
+		# Get Url
 		get = requests.get("http://"+sub+"."+url)
-		# if the request succeeds 
+		# Check if the request succeeds 
 		if get.status_code == 200:
 			file1.writelines("http://"+sub+"."+url+": is reachable \n")
 		else:
 			file1.writelines("http://"+sub+"."+url+": is Not reachable\n")
 
-	#Exception
+	# Exception
 	except requests.exceptions.RequestException as e:
-        # print URL with Errs
-		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+        # Continue
+		pass
 
 # Check domain
 def domain_checker(dom, url):
 	try:
-		#Get Url
+		# Get Url
 		get = requests.get("http://"+url+"/"+dom+"/")
-		# if the request succeeds 
+		# Check if the request succeeds 
 		if get.status_code == 200:
 			file2.writelines("http://"+url+"/"+dom+"/: is reachable \n")
 		else:
 			file2.writelines("http://"+url+"/"+dom+"/: is Not reachable \n")
 
-	#Exception
+	# Exception
 	except requests.exceptions.RequestException as e:
-        # print URL with Errs
-		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+        # Continue
+		pass
 
 # Check files
 def file_checker(file, url):
 	try:
-		#Get Url
+		# Get Url
 		get = requests.get("http://"+url+"/"+file)
-		# if the request succeeds 
+		# Check if the request succeeds 
 		if get.status_code == 200:
 			file3.writelines("http://"+url+"/"+file+": is reachable \n")
 		else:
 			file3.writelines("http://"+url+"/"+file+": is Not reachable \n")
 
-	#Exception
+	# Exception
 	except requests.exceptions.RequestException as e:
-        # print URL with Errs
-		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+        # Continue
+		pass
 
 # Get url
 url = sys.argv[1]
@@ -74,13 +74,13 @@ file_checker("user_passwords.txt", url)
     
 # Parse html
 try:
-    #Get Url
+    # Get Url
 	get = requests.get("http://"+url)
  
-#Exception
+# Exception
 except requests.exceptions.RequestException as e:
-    # print URL with Errs
-	raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+    # Continue
+	pass
 
 # Extract links
 pattern = r"(?:<a\shref=(\w+)><//a>)"
