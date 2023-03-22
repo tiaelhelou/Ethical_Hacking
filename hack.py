@@ -6,6 +6,8 @@ import sys
 import pycurl
 from io import BytesIO
 
+import re
+
 file1 = open(' subdomains_output.bat', 'w')
 file2 = open('directories_output.bat', 'w')
 
@@ -58,3 +60,6 @@ crl.perform()
 crl.close()
 get_body = b_obj.getvalue()
 html_string = get_body.decode('utf8')
+
+pattern = r"(?:<a\shref=(\w+)><//a>)"
+lst = re.findall(pattern, html_string)
