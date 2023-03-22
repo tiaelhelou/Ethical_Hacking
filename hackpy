@@ -19,6 +19,21 @@ def subdomain_checker(sub, url):
         # print URL with Errs
 		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
 
+def domain_checker(dom, url):
+	try:
+		#Get Url
+		get = requests.get("http://"+url+"/"+dom+"/")
+		# if the request succeeds 
+		if get.status_code == 200:
+			file2.writelines("http://"+url+"/"+dom+"/: is reachable \n")
+		else:
+			file2.writelines("http://"+url+"/"+dom+"/: is Not reachable \n")
+
+	#Exception
+	except requests.exceptions.RequestException as e:
+        # print URL with Errs
+		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+
 
 url = sys.argv[1]
 
