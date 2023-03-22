@@ -2,10 +2,6 @@
 import requests
 import sys
 
-# Install: pip install pycurl
-import pycurl
-from io import BytesIO
-
 import re
 
 # Write to files
@@ -76,22 +72,23 @@ with open('dirs_dictionary.bat') as x:
         
 file_checker("user_passwords.txt", url)
     
-# Parse html    
-b_obj = BytesIO()
-crl = pycurl.Curl()
-crl.setopt(crl.URL,'https://'+url)
-crl.setopt(crl.WRITEDATA, b_obj)
-crl.perform()
-crl.close()
-get_body = b_obj.getvalue()
-html_string = get_body.decode('utf8')
+# Parse html
+try:
+    #Get Url
+	get = requests.get("http://"+url)
+ 
+#Exception
+except requests.exceptions.RequestException as e:
+    # print URL with Errs
+	raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
 
 # Extract links
 pattern = r"(?:<a\shref=(\w+)><//a>)"
-lst = re.findall(pattern, html_string)
+lst = re.findall(pattern, get.text)
 
 # Remove duplicates
 links=[]
 for i in lst:
     if i not in links:
         links.append(i)
+print(links)
