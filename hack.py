@@ -2,6 +2,10 @@
 import requests
 import sys
 
+# pip install pycurl
+import pycurl
+from io import BytesIO
+
 file1 = open(' subdomains_output.bat', 'w')
 file2 = open('directories_output.bat', 'w')
 
