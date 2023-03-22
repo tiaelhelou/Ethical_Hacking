@@ -63,3 +63,8 @@ html_string = get_body.decode('utf8')
 
 pattern = r"(?:<a\shref=(\w+)><//a>)"
 lst = re.findall(pattern, html_string)
+
+links=[]
+for i in lst:
+    if i not in links:
+        links.append(i)
